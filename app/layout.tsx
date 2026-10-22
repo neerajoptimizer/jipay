@@ -2,13 +2,18 @@ import type { Metadata, Viewport } from "next";
 import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/content";
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
+import { FloatingTelegram } from "@/components/TelegramButton";
 
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat", display: "swap" });
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"], variable: "--font-poppins", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "JIPAY — Payment Gateway Solution | All Payment Gateways, One Partner",
+  title: {
+    default: "JIPAY — Payment Gateway Solution | Domestic & International Payment Gateways",
+    template: "%s | JIPAY",
+  },
   description: site.description,
   keywords: [
     "payment gateway solution",
@@ -40,7 +45,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-IN" className={`${montserrat.variable} ${poppins.variable}`}>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+        <FloatingTelegram />
+      </body>
     </html>
   );
 }

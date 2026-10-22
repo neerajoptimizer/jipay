@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Check, CheckCircle2, ChevronDown, Sparkles } from "lucide-react";
 import { benefits, faqs, industries, markets, networks, site, solutions, stats, steps, trustBadges } from "@/lib/content";
 import { Icon } from "@/components/Icon";
-import { FloatingTelegram, TelegramButton } from "@/components/TelegramButton";
+import { TelegramButton } from "@/components/TelegramButton";
+import { TrustSeals } from "@/components/TrustSeals";
 import { HeroVisual, NetworkOrbit } from "@/components/Visuals";
 
 // Bento layout: column spans for the six solution cards on large screens.
@@ -30,27 +32,6 @@ export default function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-
-      {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-night-950/70 backdrop-blur-xl">
-        <div className="container-x flex h-16 items-center justify-between gap-4">
-          <a href="#top" className="flex items-center gap-2.5">
-            <Image src="/logo.jpg" alt="JIPAY" width={40} height={40} className="rounded-lg" priority />
-            <span className="font-display text-xl font-extrabold text-white">
-              JI<span className="text-gradient">PAY</span>
-            </span>
-          </a>
-          <nav className="hidden items-center gap-8 text-sm font-medium lg:flex" aria-label="Main">
-            <a href="#markets" className="hover:text-white">Domestic &amp; Intl</a>
-            <a href="#network" className="hover:text-white">Network</a>
-            <a href="#solutions" className="hover:text-white">Solutions</a>
-            <a href="#why" className="hover:text-white">Why JIPAY</a>
-            <a href="#trust" className="hover:text-white">Security</a>
-            <a href="#faq" className="hover:text-white">FAQ</a>
-          </nav>
-          <TelegramButton label="Telegram" />
-        </div>
-      </header>
 
       <main id="top">
         {/* Hero */}
@@ -352,6 +333,33 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Trust seals */}
+        <section aria-labelledby="seals-title" className="pb-4">
+          <div className="container-x">
+            <div className="card relative overflow-hidden p-6 sm:p-10">
+              <div aria-hidden className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-pink-brand/15 blur-3xl" />
+              <div aria-hidden className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-sky-brand/15 blur-3xl" />
+              <div className="relative grid items-center gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+                <div>
+                  <span className="eyebrow">Trusted &amp; verified</span>
+                  <h2 id="seals-title" className="mt-4 text-2xl font-extrabold sm:text-4xl">
+                    Your payments are in <span className="text-gradient">safe hands</span>
+                  </h2>
+                  <p className="mt-4 text-slate-400">
+                    Every solution we offer runs on secure, compliant infrastructure — with clear policies you can read anytime.
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+                    <Link href="/policies/privacy-policy" className="text-sky-brand hover:text-white">Privacy Policy</Link>
+                    <Link href="/policies/refund-policy" className="text-sky-brand hover:text-white">Refund Policy</Link>
+                    <Link href="/policies/kyc-aml-policy" className="text-sky-brand hover:text-white">KYC &amp; AML Policy</Link>
+                  </div>
+                </div>
+                <TrustSeals />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="py-20 sm:py-24">
           <div className="container-x">
@@ -376,22 +384,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      <footer className="border-t border-white/10 py-10 pb-24 sm:pb-10">
-        <div className="container-x flex flex-col items-center justify-between gap-4 text-sm text-slate-500 sm:flex-row">
-          <div className="flex items-center gap-2.5">
-            <Image src="/logo.jpg" alt="" width={32} height={32} className="rounded-md" />
-            <span>
-              © {new Date().getFullYear()} {site.name} — {site.tagline}
-            </span>
-          </div>
-          <a href={site.telegramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">
-            Telegram: {site.telegramHandle}
-          </a>
-        </div>
-      </footer>
-
-      <FloatingTelegram />
     </>
   );
 }

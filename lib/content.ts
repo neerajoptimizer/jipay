@@ -7,6 +7,11 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://jipay.in",
   telegramUrl: process.env.NEXT_PUBLIC_TELEGRAM_URL ?? "https://t.me/jipay",
   telegramHandle: process.env.NEXT_PUBLIC_TELEGRAM_HANDLE ?? "@jipay",
+  // Used on the policy pages — set these to your registered business details.
+  legalName: process.env.NEXT_PUBLIC_LEGAL_NAME ?? "JIPAY",
+  email: process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "support@jipay.in",
+  address: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS ?? "India",
+  grievanceOfficer: process.env.NEXT_PUBLIC_GRIEVANCE_OFFICER ?? "Grievance Officer, JIPAY",
   description:
     "JIPAY has partners and networks for all types of domestic and international payment gateway solutions — online checkout, UPI, cards, net banking, payouts and cross-border payments. Fast onboarding and 24/7 support on Telegram.",
 };
@@ -125,6 +130,36 @@ export const trustBadges: { icon: IconName; title: string; text: string }[] = [
   { icon: "badge", title: "Verified KYC", text: "Transparent, documented KYC for every merchant." },
   { icon: "zap", title: "Fast Settlements", text: "T+0 / T+1 settlement options available." },
   { icon: "headset", title: "24/7 Support", text: "Real people, always reachable on Telegram." },
+];
+
+// Seal-style badges shown in the "safe hands" band and the footer.
+export const seals: { icon: IconName; title: string; sub: string }[] = [
+  { icon: "shield", title: "100% Secure", sub: "Payments" },
+  { icon: "lock", title: "SSL Encrypted", sub: "256-bit" },
+  { icon: "landmark", title: "RBI Compliant", sub: "Partners" },
+  { icon: "badge", title: "Verified", sub: "Business" },
+  { icon: "radar", title: "Fraud", sub: "Monitoring" },
+  { icon: "key", title: "Data Privacy", sub: "Protected" },
+  { icon: "receipt", title: "Transparent", sub: "Pricing" },
+  { icon: "headset", title: "24/7", sub: "Support" },
+];
+
+export const paymentMethods: { icon: IconName; label: string }[] = [
+  { icon: "qr", label: "UPI" },
+  { icon: "card", label: "Debit & Credit Cards" },
+  { icon: "building", label: "Net Banking" },
+  { icon: "wallet", label: "Wallets" },
+  { icon: "repeat", label: "Pay Later & EMI" },
+  { icon: "globe", label: "International Cards" },
+];
+
+export const navLinks = [
+  { href: "/#markets", label: "Domestic & Intl" },
+  { href: "/#network", label: "Network" },
+  { href: "/#solutions", label: "Solutions" },
+  { href: "/#why", label: "Why JIPAY" },
+  { href: "/#trust", label: "Security" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export const steps = [

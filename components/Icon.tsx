@@ -9,11 +9,14 @@ import {
   Globe,
   GraduationCap,
   Headset,
+  KeyRound,
   Landmark,
   Layers,
   Lock,
   Network,
   Plane,
+  Radar,
+  Receipt,
   QrCode,
   Repeat,
   Send,
@@ -51,6 +54,9 @@ const icons = {
   briefcase: Briefcase,
   repeat: Repeat,
   gaming: Gamepad2,
+  radar: Radar,
+  key: KeyRound,
+  receipt: Receipt,
 };
 
 export type IconName = keyof typeof icons;
