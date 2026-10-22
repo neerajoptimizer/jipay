@@ -219,11 +219,11 @@ export default function Home() {
         {/* Industries */}
         <section aria-labelledby="industries-title" className="pb-20 sm:pb-24">
           <div className="container-x">
-            <div className="card px-6 py-10 sm:px-10">
+            <div className="card px-4 py-10 sm:px-10">
               <h2 id="industries-title" className="text-center text-xl font-bold sm:text-2xl">Built for every kind of business</h2>
-              <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
+              <ul className="mt-8 grid grid-cols-3 gap-2.5 sm:gap-3 lg:grid-cols-9">
                 {industries.map((ind) => (
-                  <li key={ind.label} className="flex flex-col items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.03] px-3 py-5 text-center text-sm font-medium text-slate-200 transition hover:border-sky-brand/40">
+                  <li key={ind.label} className="flex flex-col items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.03] px-1 py-5 text-center text-xs font-medium whitespace-nowrap sm:text-sm lg:text-[13px] xl:text-sm text-slate-200 transition hover:border-sky-brand/40">
                     <Icon name={ind.icon} className="h-6 w-6 text-sky-brand" />
                     {ind.label}
                   </li>

@@ -86,6 +86,7 @@ export const benefits = [
 
 export const industries: { icon: IconName; label: string }[] = [
   { icon: "bag", label: "E-commerce" },
+  { icon: "gaming", label: "Gaming" },
   { icon: "graduation", label: "Education" },
   { icon: "app", label: "SaaS & Apps" },
   { icon: "plane", label: "Travel" },

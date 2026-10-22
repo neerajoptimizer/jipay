@@ -5,6 +5,7 @@ import {
   Building2,
   ChartNoAxesCombined,
   CreditCard,
+  Gamepad2,
   Globe,
   GraduationCap,
   Headset,
@@ -49,6 +50,7 @@ const icons = {
   plane: Plane,
   briefcase: Briefcase,
   repeat: Repeat,
+  gaming: Gamepad2,
 };
 
 export type IconName = keyof typeof icons;
