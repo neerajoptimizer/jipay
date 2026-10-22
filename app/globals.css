@@ -12,10 +12,16 @@
   --color-night-800: #121729;
   --color-night-700: #1d2340;
 
-  --animate-marquee: marquee 40s linear infinite;
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 8s ease-in-out infinite;
+  --animate-spin-slow: spin 60s linear infinite;
+  --animate-spin-slow-reverse: spin-reverse 60s linear infinite;
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes spin-reverse {
+    to { transform: rotate(-360deg); }
   }
 }
 
@@ -42,16 +48,25 @@
   @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
 }
 @utility section {
-  @apply py-16 sm:py-20 lg:py-24;
+  @apply py-20 sm:py-24 lg:py-32;
 }
 @utility text-gradient {
   @apply bg-gradient-to-r from-sky-brand via-blue-brand to-pink-brand bg-clip-text text-transparent;
 }
 @utility eyebrow {
-  @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-pink-brand uppercase;
+  @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1 text-[11px] font-semibold tracking-[0.2em] text-sky-brand uppercase;
 }
 @utility card {
-  @apply rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur;
+  @apply rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] backdrop-blur-xl;
+}
+@utility glass {
+  @apply rounded-2xl border border-white/15 bg-night-900/70 shadow-2xl shadow-black/40 backdrop-blur-xl;
+}
+@utility grid-bg {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
 @media (prefers-reduced-motion: reduce) {

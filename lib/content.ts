@@ -1,4 +1,5 @@
 // All editable copy for the JIPAY landing page lives here.
+import type { IconName } from "@/components/Icon";
 
 export const site = {
   name: "JIPAY",
@@ -7,91 +8,116 @@ export const site = {
   telegramUrl: process.env.NEXT_PUBLIC_TELEGRAM_URL ?? "https://t.me/jipay",
   telegramHandle: process.env.NEXT_PUBLIC_TELEGRAM_HANDLE ?? "@jipay",
   description:
-    "JIPAY connects your business to every leading payment gateway in India through one partner — fast onboarding, UPI, cards, net banking, payouts and quick settlements. Talk to us on Telegram.",
+    "JIPAY has partners and networks for all types of payment gateway solutions — online checkout, UPI, cards, net banking, payouts and cross-border payments. Fast onboarding and 24/7 support on Telegram.",
 };
 
-export const gateways = [
-  "Razorpay",
-  "PayU",
-  "Cashfree",
-  "Paytm",
-  "PhonePe",
-  "CCAvenue",
-  "BillDesk",
-  "Juspay",
-  "Easebuzz",
-  "Instamojo",
-  "Stripe",
-  "PayPal",
-  "Airpay",
-  "Paykun",
-  "ICICI Pay",
-  "HDFC SmartGateway",
-];
-
 export const stats = [
-  { value: "All", label: "Major gateways under one roof" },
+  { value: "All", label: "Types of payment gateway solutions" },
   { value: "24–48h", label: "Typical onboarding time" },
   { value: "100+", label: "Payment methods supported" },
   { value: "24/7", label: "Support on Telegram" },
 ];
 
-export const trustBadges = [
-  { icon: "shield", title: "PCI DSS Compliant", text: "Card data handled only by PCI DSS certified gateway partners." },
-  { icon: "lock", title: "256-bit SSL Secured", text: "Bank-grade encryption on every transaction and dashboard." },
-  { icon: "landmark", title: "RBI-Authorised Partners", text: "We work only with RBI-authorised payment aggregators." },
-  { icon: "badge", title: "Verified KYC", text: "Transparent, documented KYC for every merchant onboarding." },
-  { icon: "zap", title: "Fast Settlements", text: "T+0 / T+1 settlement options depending on the gateway." },
-  { icon: "headset", title: "Dedicated Support", text: "A real account manager, reachable 24/7 on Telegram." },
-] as const;
+// Shown around the network visual — categories only, no partner names.
+export const networks: { icon: IconName; label: string; text: string }[] = [
+  { icon: "network", label: "Payment Aggregators", text: "A wide network of authorised aggregators for every business type." },
+  { icon: "landmark", label: "Banking Partners", text: "Banking relationships for collections and settlements." },
+  { icon: "qr", label: "UPI Network", text: "UPI intent, collect and dynamic QR across all UPI apps." },
+  { icon: "card", label: "Card Networks", text: "Domestic and international debit and credit cards." },
+  { icon: "wallet", label: "Wallets & BNPL", text: "Popular wallets, pay-later and EMI options." },
+  { icon: "globe", label: "Cross-border", text: "Accept international payments in multiple currencies." },
+  { icon: "send", label: "Payout Rails", text: "IMPS, NEFT, RTGS and UPI payouts at scale." },
+  { icon: "building", label: "Net Banking", text: "50+ banks for net banking checkout." },
+];
 
-export const services = [
-  {
-    icon: "layers",
-    title: "Multi-Gateway Setup",
-    text: "Get approved on the right gateway for your business model — or several at once for redundancy and better success rates.",
-  },
-  {
-    icon: "qr",
-    title: "UPI, QR & Intent",
-    text: "Collect with UPI intent, dynamic QR, collect requests and payment links that convert on every phone.",
-  },
+export const solutions: { icon: IconName; title: string; text: string; image: string; alt: string }[] = [
   {
     icon: "card",
-    title: "Cards & Net Banking",
-    text: "Visa, Mastercard, RuPay, Amex, 50+ net banking options, wallets and EMI — all through one integration.",
+    title: "Online Checkout",
+    text: "High-converting checkout for websites and apps — cards, net banking, wallets and EMI through one integration.",
+    image: "/images/online-checkout.jpg",
+    alt: "Customer paying online with a card on a laptop",
   },
   {
-    icon: "send",
-    title: "Payouts",
-    text: "Bulk and API payouts to bank accounts and UPI IDs for vendors, refunds, salaries and commissions.",
+    icon: "smartphone",
+    title: "UPI & QR Payments",
+    text: "UPI intent, collect requests, dynamic QR and payment links that work on every phone.",
+    image: "/images/mobile-payments.jpg",
+    alt: "Person making a mobile payment while working on a laptop",
   },
   {
-    icon: "code",
-    title: "Integration Help",
-    text: "Plugins for WordPress, Shopify and custom apps, plus hands-on API support from our tech team.",
+    icon: "store",
+    title: "In-store & Tap to Pay",
+    text: "Accept payments at the counter with QR standees, soundboxes and card terminals.",
+    image: "/images/in-store-payment.jpg",
+    alt: "Customer paying with a phone at a shop counter",
+  },
+  {
+    icon: "globe",
+    title: "International Payments",
+    text: "Sell globally and get paid in multiple currencies with cross-border solutions.",
+    image: "/images/international.jpg",
+    alt: "Banknotes in many international currencies",
   },
   {
     icon: "chart",
-    title: "Better Pricing",
-    text: "Our volume tie-ups unlock competitive MDR and settlement terms you won't get going direct.",
+    title: "Dashboard & Reports",
+    text: "Track every transaction, refund and settlement in real time from a clean merchant dashboard.",
+    image: "/images/dashboard.jpg",
+    alt: "Laptop showing a payments analytics dashboard",
   },
-] as const;
+  {
+    icon: "send",
+    title: "Payouts & Settlements",
+    text: "Bulk and API payouts to bank accounts and UPI IDs, with fast T+0 / T+1 settlement options.",
+    image: "/images/merchant.jpg",
+    alt: "Merchant completing a payment on a tablet at the front desk",
+  },
+];
+
+export const benefits = [
+  "One partner for every type of payment gateway solution",
+  "We match you with the best-fit gateway for your business",
+  "Competitive pricing through our partner network",
+  "Quick KYC and onboarding — often live in 24–48 hours",
+  "Backup gateways for higher success rates and less downtime",
+  "A dedicated account manager, reachable 24/7 on Telegram",
+];
+
+export const industries: { icon: IconName; label: string }[] = [
+  { icon: "bag", label: "E-commerce" },
+  { icon: "graduation", label: "Education" },
+  { icon: "app", label: "SaaS & Apps" },
+  { icon: "plane", label: "Travel" },
+  { icon: "store", label: "Retail" },
+  { icon: "briefcase", label: "Services" },
+  { icon: "repeat", label: "Subscriptions" },
+  { icon: "layers", label: "Marketplaces" },
+];
+
+export const trustBadges: { icon: IconName; title: string; text: string }[] = [
+  { icon: "shield", title: "PCI DSS Compliant", text: "Card data handled only by PCI DSS certified partners." },
+  { icon: "lock", title: "256-bit SSL Secured", text: "Bank-grade encryption on every transaction." },
+  { icon: "landmark", title: "RBI-Authorised Partners", text: "We work only with RBI-authorised payment aggregators." },
+  { icon: "badge", title: "Verified KYC", text: "Transparent, documented KYC for every merchant." },
+  { icon: "zap", title: "Fast Settlements", text: "T+0 / T+1 settlement options available." },
+  { icon: "headset", title: "24/7 Support", text: "Real people, always reachable on Telegram." },
+];
 
 export const steps = [
   { title: "Message us on Telegram", text: "Tell us about your business, monthly volume and the payment modes you need." },
-  { title: "Share your documents", text: "We pick the best-fit gateway and handle KYC and onboarding paperwork with you." },
+  { title: "Share your documents", text: "We pick the best-fit solution and handle KYC and onboarding paperwork with you." },
   { title: "Go live & get paid", text: "Receive live API keys or payment links and start accepting payments." },
 ];
 
 export const faqs = [
   {
-    q: "Which payment gateways do you work with?",
-    a: "We have tie-ups with all major payment gateways and aggregators in India, including Razorpay, PayU, Cashfree, Paytm, PhonePe, CCAvenue, BillDesk, Easebuzz and more. We recommend the best fit for your business category and volume.",
+    q: "Which payment gateway solutions do you offer?",
+    a: "We have partners and networks for all types of payment gateway solutions — online checkout, UPI and QR, cards, net banking, wallets, payouts and international payments. We recommend the best fit for your business category and volume.",
   },
   {
     q: "How long does onboarding take?",
-    a: "Most merchants are live within 24–48 hours once documents are complete. Some categories need additional checks by the gateway and can take a little longer.",
+    a: "Most merchants are live within 24–48 hours once documents are complete. Some business categories need additional checks and can take a little longer.",
   },
   {
     q: "What documents do I need?",
@@ -99,10 +125,10 @@ export const faqs = [
   },
   {
     q: "Do you charge any setup fee?",
-    a: "Pricing depends on the gateway and your business profile. Message us on Telegram for a transparent quote — there are no hidden charges.",
+    a: "Pricing depends on the solution and your business profile. Message us on Telegram for a transparent quote — there are no hidden charges.",
   },
   {
     q: "Is my money and customer data safe?",
-    a: "Yes. Payments are processed and settled directly by RBI-authorised, PCI DSS compliant gateways into your own bank account.",
+    a: "Yes. Payments are processed and settled by RBI-authorised, PCI DSS compliant partners directly into your own bank account.",
   },
 ];

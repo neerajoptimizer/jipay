@@ -1,6 +1,6 @@
 # JIPAY — Payment Gateway Solution landing page
 
-Single-page Next.js 16 + Tailwind CSS 4 landing page with Telegram call-to-action buttons, trust badges and a partner gateway marquee.
+Premium single-page Next.js 16 + Tailwind CSS 4 landing page: Telegram call-to-action buttons, trust badges, partner-network visual, photo solution cards, industries, how-it-works and FAQ.
 
 ```bash
 cd jipay
@@ -11,7 +11,6 @@ npm run build && npm start
 ```
 
 - **Telegram link**: set `NEXT_PUBLIC_TELEGRAM_URL` / `NEXT_PUBLIC_TELEGRAM_HANDLE` (defaults to `https://t.me/jipay`).
-- **Copy, partners, stats, trust badges, FAQ**: edit `lib/content.ts`.
+- **Copy, network categories, solutions, stats, trust badges, FAQ**: edit `lib/content.ts`.
 - **Logo**: `public/logo.jpg`.
-
-When deploying on Vercel, set the project's Root Directory to `jipay`.
+- **Photos**: `public/images/` — free-to-use photos from [Unsplash](https://unsplash.com/license). Replace with your own anytime (keep the same file names).

@@ -1,8 +1,12 @@
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, ChevronDown } from "lucide-react";
-import { faqs, gateways, services, site, stats, steps, trustBadges } from "@/lib/content";
+import { ArrowRight, CheckCircle2, ChevronDown, Sparkles } from "lucide-react";
+import { benefits, faqs, industries, networks, site, solutions, stats, steps, trustBadges } from "@/lib/content";
 import { Icon } from "@/components/Icon";
 import { FloatingTelegram, TelegramButton } from "@/components/TelegramButton";
+import { HeroVisual, NetworkOrbit } from "@/components/Visuals";
+
+// Bento layout: column spans for the six solution cards on large screens.
+const solutionSpans = ["lg:col-span-2", "", "", "lg:col-span-2", "lg:col-span-2", ""];
 
 export default function Home() {
   const jsonLd = {
@@ -28,7 +32,7 @@ export default function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-night-950/80 backdrop-blur-lg">
+      <header className="sticky top-0 z-40 border-b border-white/10 bg-night-950/70 backdrop-blur-xl">
         <div className="container-x flex h-16 items-center justify-between gap-4">
           <a href="#top" className="flex items-center gap-2.5">
             <Image src="/logo.jpg" alt="JIPAY" width={40} height={40} className="rounded-lg" priority />
@@ -36,9 +40,10 @@ export default function Home() {
               JI<span className="text-gradient">PAY</span>
             </span>
           </a>
-          <nav className="hidden items-center gap-8 text-sm font-medium md:flex" aria-label="Main">
-            <a href="#partners" className="hover:text-white">Partners</a>
-            <a href="#services" className="hover:text-white">Services</a>
+          <nav className="hidden items-center gap-8 text-sm font-medium lg:flex" aria-label="Main">
+            <a href="#network" className="hover:text-white">Network</a>
+            <a href="#solutions" className="hover:text-white">Solutions</a>
+            <a href="#why" className="hover:text-white">Why JIPAY</a>
             <a href="#trust" className="hover:text-white">Security</a>
             <a href="#faq" className="hover:text-white">FAQ</a>
           </nav>
@@ -49,133 +54,206 @@ export default function Home() {
       <main id="top">
         {/* Hero */}
         <section className="relative overflow-hidden">
-          <div aria-hidden className="pointer-events-none absolute -top-40 -left-40 h-[32rem] w-[32rem] rounded-full bg-blue-brand/25 blur-[120px]" />
-          <div aria-hidden className="pointer-events-none absolute top-20 -right-40 h-[28rem] w-[28rem] rounded-full bg-pink-brand/20 blur-[120px]" />
-          <div className="container-x relative grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1.15fr_0.85fr]">
+          <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]" />
+          <div aria-hidden className="pointer-events-none absolute -top-40 -left-40 h-[36rem] w-[36rem] rounded-full bg-blue-brand/25 blur-[140px]" />
+          <div aria-hidden className="pointer-events-none absolute top-40 -right-40 h-[32rem] w-[32rem] rounded-full bg-pink-brand/20 blur-[140px]" />
+          <div className="container-x relative grid items-center gap-16 py-16 sm:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium text-slate-200">
-                <span className="h-2 w-2 rounded-full bg-emerald-400" /> Tie-ups with all leading payment gateways
+              <span className="eyebrow">
+                <Sparkles className="h-3.5 w-3.5" /> Premium payment gateway solutions
               </span>
-              <h1 className="mt-6 text-4xl leading-[1.1] font-extrabold sm:text-5xl lg:text-6xl">
-                Every payment gateway. <span className="text-gradient">One trusted partner.</span>
+              <h1 className="mt-6 text-4xl leading-[1.05] font-extrabold sm:text-6xl lg:text-7xl">
+                Accept payments. <br className="hidden sm:block" />
+                <span className="text-gradient">Every way. Everywhere.</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-400">
-                JIPAY gets your business live on the right payment gateway — fast. UPI, cards, net banking, wallets and
-                payouts, with quick onboarding, better pricing and real support on Telegram.
+                We have <strong className="font-semibold text-white">partners and networks for all types of payment gateway solutions</strong>.
+                UPI, cards, net banking, wallets, payouts and international payments — matched to your business and live fast.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <TelegramButton size="lg" label="Start on Telegram" />
                 <a
-                  href="#partners"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-7 py-4 text-base font-semibold text-white transition hover:bg-white/5"
+                  href="#solutions"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-4 text-base font-semibold text-white transition hover:bg-white/10"
                 >
-                  View gateway partners <ArrowRight className="h-4 w-4" />
+                  Explore solutions <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
-              <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-400">
-                {["PCI DSS partners", "256-bit SSL", "RBI-authorised aggregators"].map((t) => (
-                  <li key={t} className="flex items-center gap-1.5">
-                    <CheckCircle2 className="h-4 w-4 text-sky-brand" /> {t}
+              <ul className="mt-10 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4" aria-label="Trust badges">
+                {trustBadges.slice(0, 4).map((b) => (
+                  <li key={b.title} className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 text-xs font-medium text-slate-200">
+                    <Icon name={b.icon} className="h-4 w-4 shrink-0 text-sky-brand" />
+                    {b.title.replace(" Compliant", "").replace(" Secured", "").replace("-Authorised Partners", " Partners")}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
-              <div aria-hidden className="absolute inset-6 rounded-[2rem] bg-gradient-to-br from-sky-brand/40 to-pink-brand/40 blur-2xl" />
-              <Image
-                src="/logo.jpg"
-                alt="JIPAY — Payment Gateway Solution"
-                width={1254}
-                height={1254}
-                priority
-                sizes="(min-width: 1024px) 40vw, 90vw"
-                className="relative rounded-[2rem] border border-white/10 shadow-2xl"
-              />
-            </div>
+            <HeroVisual />
           </div>
         </section>
 
         {/* Stats */}
-        <section aria-label="JIPAY in numbers" className="border-y border-white/10 bg-night-900">
-          <dl className="container-x grid grid-cols-2 gap-8 py-10 lg:grid-cols-4">
+        <section aria-label="JIPAY in numbers" className="border-y border-white/10 bg-night-900/60">
+          <dl className="container-x grid grid-cols-2 divide-white/10 py-10 lg:grid-cols-4 lg:divide-x">
             {stats.map((s) => (
-              <div key={s.label} className="text-center">
+              <div key={s.label} className="px-4 py-4 text-center">
                 <dt className="sr-only">{s.label}</dt>
-                <dd className="font-display text-3xl font-extrabold text-white sm:text-4xl">{s.value}</dd>
-                <dd className="mt-1 text-sm text-slate-400">{s.label}</dd>
+                <dd className="text-gradient font-display text-4xl font-extrabold sm:text-5xl">{s.value}</dd>
+                <dd className="mt-2 text-sm text-slate-400">{s.label}</dd>
               </div>
             ))}
           </dl>
         </section>
 
-        {/* Partners */}
-        <section id="partners" className="section scroll-mt-16">
-          <div className="container-x text-center">
-            <p className="eyebrow">Our gateway network</p>
-            <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">
-              Tie-ups with <span className="text-gradient">all major payment gateways</span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-slate-400">
-              One conversation with JIPAY opens the door to India&apos;s leading payment gateways and aggregators. We match
-              you with the one that fits your business, volume and settlement needs.
-            </p>
+        {/* Network */}
+        <section id="network" className="section relative scroll-mt-16 overflow-hidden">
+          <div aria-hidden className="pointer-events-none absolute top-1/3 left-1/2 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-blue-brand/10 blur-[120px]" />
+          <div className="container-x relative">
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="eyebrow">Our network</span>
+              <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">
+                Partners &amp; networks for <span className="text-gradient">all types of payment gateway solutions</span>
+              </h2>
+              <p className="mt-5 text-lg text-slate-400">
+                One conversation with JIPAY opens our entire partner network. We match you with the right solution for your
+                business model, volume and settlement needs.
+              </p>
+            </div>
+            <div className="mt-16 grid items-center gap-12 lg:grid-cols-2">
+              <NetworkOrbit />
+              <ul className="grid gap-4 sm:grid-cols-2">
+                {networks.map((n) => (
+                  <li key={n.label} className="card p-5 transition hover:border-sky-brand/40">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-sky-brand to-blue-brand text-white">
+                        <Icon name={n.icon} className="h-5 w-5" />
+                      </span>
+                      <h3 className="font-bold">{n.label}</h3>
+                    </div>
+                    <p className="mt-3 text-sm leading-relaxed text-slate-400">{n.text}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="relative mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-            <ul className="flex w-max animate-marquee gap-4 hover:[animation-play-state:paused]">
-              {[...gateways, ...gateways].map((g, i) => (
-                <li
-                  key={`${g}-${i}`}
-                  aria-hidden={i >= gateways.length}
-                  className="card flex h-16 min-w-44 items-center justify-center px-6 font-display text-lg font-bold whitespace-nowrap text-white"
-                >
-                  {g}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <p className="container-x mt-6 text-center text-sm text-slate-500">…and many more banks, wallets and aggregators.</p>
         </section>
 
-        {/* Services */}
-        <section id="services" className="section scroll-mt-16 bg-night-900">
+        {/* Solutions */}
+        <section id="solutions" className="section scroll-mt-16 bg-night-900">
           <div className="container-x">
-            <div className="max-w-2xl">
-              <p className="eyebrow">What we do</p>
-              <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Everything you need to accept and send money</h2>
+            <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+              <div className="max-w-2xl">
+                <span className="eyebrow">Solutions</span>
+                <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Everything you need to accept &amp; move money</h2>
+              </div>
+              <p className="max-w-md text-slate-400">From the first rupee online to bulk payouts and cross-border sales — one partner for all of it.</p>
             </div>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map((s) => (
-                <article key={s.title} className="card p-6 transition hover:border-sky-brand/40">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-sky-brand to-blue-brand text-white">
-                    <Icon name={s.icon} className="h-6 w-6" />
+            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {solutions.map((s, i) => (
+                <article key={s.title} className={`group relative h-96 overflow-hidden rounded-3xl border border-white/10 ${solutionSpans[i]}`}>
+                  <Image
+                    src={s.image}
+                    alt={s.alt}
+                    fill
+                    sizes="(min-width: 1024px) 66vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition duration-700 group-hover:scale-105"
+                  />
+                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-night-950 via-night-950/70 to-night-950/10" />
+                  <div className="absolute inset-x-0 bottom-0 p-7">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white backdrop-blur">
+                      <Icon name={s.icon} className="h-5 w-5" />
+                    </span>
+                    <h3 className="mt-4 text-2xl font-bold">{s.title}</h3>
+                    <p className="mt-2 max-w-md text-sm leading-relaxed text-slate-300">{s.text}</p>
                   </div>
-                  <h3 className="mt-5 text-lg font-bold">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-400">{s.text}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Trust badges */}
-        <section id="trust" className="section scroll-mt-16">
+        {/* Why JIPAY */}
+        <section id="why" className="section scroll-mt-16">
+          <div className="container-x grid items-center gap-16 lg:grid-cols-2">
+            <div className="relative">
+              <div aria-hidden className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-tr from-pink-brand/30 to-sky-brand/30 blur-3xl" />
+              <div className="relative overflow-hidden rounded-[2rem] border border-white/15">
+                <Image
+                  src="/images/partnership.jpg"
+                  alt="Business partners celebrating a successful deal"
+                  width={1200}
+                  height={800}
+                  sizes="(min-width: 1024px) 45vw, 90vw"
+                  className="aspect-[4/3] w-full object-cover"
+                />
+              </div>
+              <div className="glass absolute -bottom-8 left-6 flex items-center gap-4 p-4 pr-6 sm:left-10">
+                <Image src="/logo.jpg" alt="" width={48} height={48} className="rounded-xl" />
+                <div>
+                  <p className="font-display font-bold text-white">One partner. Every gateway.</p>
+                  <p className="text-xs text-slate-400">Partners &amp; networks for all types</p>
+                </div>
+              </div>
+            </div>
+            <div className="pt-6 lg:pt-0">
+              <span className="eyebrow">Why JIPAY</span>
+              <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">
+                Your shortcut to the <span className="text-gradient">right payment gateway</span>
+              </h2>
+              <p className="mt-5 text-lg text-slate-400">
+                Skip weeks of applications and rejections. We know which solution fits your business and get you live quickly.
+              </p>
+              <ul className="mt-8 space-y-4">
+                {benefits.map((b) => (
+                  <li key={b} className="flex gap-3">
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-pink-brand" />
+                    <span className="text-slate-200">{b}</span>
+                  </li>
+                ))}
+              </ul>
+              <TelegramButton size="lg" label="Talk to an expert" className="mt-10" />
+            </div>
+          </div>
+        </section>
+
+        {/* Industries */}
+        <section aria-labelledby="industries-title" className="pb-20 sm:pb-24">
           <div className="container-x">
-            <div className="text-center">
-              <p className="eyebrow">Safe &amp; secure</p>
-              <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">
-                Built on <span className="text-gradient">trust and compliance</span>
+            <div className="card px-6 py-10 sm:px-10">
+              <h2 id="industries-title" className="text-center text-xl font-bold sm:text-2xl">Built for every kind of business</h2>
+              <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
+                {industries.map((ind) => (
+                  <li key={ind.label} className="flex flex-col items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.03] px-3 py-5 text-center text-sm font-medium text-slate-200 transition hover:border-sky-brand/40">
+                    <Icon name={ind.icon} className="h-6 w-6 text-sky-brand" />
+                    {ind.label}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Trust badges */}
+        <section id="trust" className="section relative scroll-mt-16 overflow-hidden bg-night-900">
+          <div aria-hidden className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
+          <div className="container-x relative">
+            <div className="mx-auto max-w-2xl text-center">
+              <span className="eyebrow">Safe &amp; secure</span>
+              <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">
+                Built on <span className="text-gradient">trust &amp; compliance</span>
               </h2>
             </div>
-            <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="mt-16 grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-6">
               {trustBadges.map((b) => (
-                <li key={b.title} className="card flex gap-4 p-6">
-                  <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-pink-brand/60 bg-pink-brand/10 text-pink-brand">
-                    <Icon name={b.icon} className="h-7 w-7" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">{b.title}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-slate-400">{b.text}</p>
-                  </div>
+                <li key={b.title} className="card flex flex-col items-center p-6 text-center">
+                  <span className="relative flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-sky-brand via-blue-brand to-pink-brand p-[2px]">
+                    <span className="flex h-full w-full items-center justify-center rounded-full bg-night-900 text-white">
+                      <Icon name={b.icon} className="h-8 w-8" />
+                    </span>
+                    <CheckCircle2 aria-hidden className="absolute -right-1 -bottom-1 h-6 w-6 rounded-full bg-night-900 text-emerald-400" />
+                  </span>
+                  <h3 className="mt-5 text-sm font-bold sm:text-base">{b.title}</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-slate-400">{b.text}</p>
                 </li>
               ))}
             </ul>
@@ -183,20 +261,21 @@ export default function Home() {
         </section>
 
         {/* How it works */}
-        <section className="section bg-night-900">
+        <section className="section">
           <div className="container-x">
             <div className="text-center">
-              <p className="eyebrow">How it works</p>
-              <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Live in three simple steps</h2>
+              <span className="eyebrow">How it works</span>
+              <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Live in three simple steps</h2>
             </div>
-            <ol className="mt-12 grid gap-6 md:grid-cols-3">
+            <ol className="relative mt-16 grid gap-10 md:grid-cols-3 md:gap-6">
+              <div aria-hidden className="absolute top-8 right-[16%] left-[16%] hidden h-px bg-gradient-to-r from-sky-brand via-blue-brand to-pink-brand md:block" />
               {steps.map((s, i) => (
-                <li key={s.title} className="card relative p-6 pt-10">
-                  <span className="absolute -top-5 left-6 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-sky-brand to-pink-brand font-display font-extrabold text-white">
+                <li key={s.title} className="relative text-center">
+                  <span className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-sky-brand to-pink-brand font-display text-xl font-extrabold text-white shadow-lg shadow-pink-brand/30">
                     {i + 1}
                   </span>
-                  <h3 className="text-lg font-bold">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-400">{s.text}</p>
+                  <h3 className="mt-6 text-xl font-bold">{s.title}</h3>
+                  <p className="mx-auto mt-2 max-w-xs text-sm leading-relaxed text-slate-400">{s.text}</p>
                 </li>
               ))}
             </ol>
@@ -204,15 +283,15 @@ export default function Home() {
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="section scroll-mt-16">
+        <section id="faq" className="section scroll-mt-16 bg-night-900">
           <div className="container-x max-w-3xl">
             <div className="text-center">
-              <p className="eyebrow">FAQ</p>
-              <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Questions, answered</h2>
+              <span className="eyebrow">FAQ</span>
+              <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">Questions, answered</h2>
             </div>
-            <div className="mt-10 space-y-3">
+            <div className="mt-12 space-y-3">
               {faqs.map((f) => (
-                <details key={f.q} className="card group p-5 [&_summary::-webkit-details-marker]:hidden">
+                <details key={f.q} className="card group p-6 [&_summary::-webkit-details-marker]:hidden">
                   <summary className="flex cursor-pointer items-center justify-between gap-4 font-semibold text-white">
                     {f.q}
                     <ChevronDown className="h-5 w-5 shrink-0 transition group-open:rotate-180" />
@@ -225,21 +304,23 @@ export default function Home() {
         </section>
 
         {/* CTA */}
-        <section className="pb-20">
+        <section className="py-20 sm:py-24">
           <div className="container-x">
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-brand via-[#3a4fd6] to-pink-brand px-6 py-14 text-center sm:px-12">
-              <h2 className="text-3xl font-extrabold sm:text-4xl">Ready to start accepting payments?</h2>
-              <p className="mx-auto mt-4 max-w-xl text-white/85">
-                Message us on Telegram and our team will recommend the best gateway for your business — usually within minutes.
-              </p>
-              <div className="mt-8 flex justify-center">
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 px-6 py-16 text-center sm:px-12 sm:py-20">
+              <Image src="/images/analytics.jpg" alt="" fill sizes="100vw" className="object-cover" />
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-blue-brand/95 via-[#3a3fc8]/90 to-pink-brand/90" />
+              <div className="relative">
+                <h2 className="text-3xl font-extrabold sm:text-5xl">Ready to start accepting payments?</h2>
+                <p className="mx-auto mt-5 max-w-xl text-lg text-white/85">
+                  Message us on Telegram and our team will recommend the best solution for your business — usually within minutes.
+                </p>
                 <a
                   href={site.telegramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-night-950 shadow-xl transition hover:-translate-y-0.5"
+                  className="mt-9 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-semibold text-night-950 shadow-xl transition hover:-translate-y-0.5"
                 >
-                  Message {site.telegramHandle} <ArrowRight className="h-4 w-4" />
+                  Message {site.telegramHandle} on Telegram <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
             </div>
@@ -255,9 +336,9 @@ export default function Home() {
               © {new Date().getFullYear()} {site.name} — {site.tagline}
             </span>
           </div>
-          <p className="max-w-md text-center text-xs sm:text-right">
-            Partner names are trademarks of their respective owners. Payments are processed by RBI-authorised payment aggregators.
-          </p>
+          <a href={site.telegramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+            Telegram: {site.telegramHandle}
+          </a>
         </div>
       </footer>
 
