@@ -8,14 +8,36 @@ export const site = {
   telegramUrl: process.env.NEXT_PUBLIC_TELEGRAM_URL ?? "https://t.me/jipay",
   telegramHandle: process.env.NEXT_PUBLIC_TELEGRAM_HANDLE ?? "@jipay",
   description:
-    "JIPAY has partners and networks for all types of payment gateway solutions — online checkout, UPI, cards, net banking, payouts and cross-border payments. Fast onboarding and 24/7 support on Telegram.",
+    "JIPAY has partners and networks for all types of domestic and international payment gateway solutions — online checkout, UPI, cards, net banking, payouts and cross-border payments. Fast onboarding and 24/7 support on Telegram.",
 };
 
 export const stats = [
-  { value: "All", label: "Types of payment gateway solutions" },
+  { value: "All", label: "Domestic & international gateway solutions" },
   { value: "24–48h", label: "Typical onboarding time" },
   { value: "100+", label: "Payment methods supported" },
   { value: "24/7", label: "Support on Telegram" },
+];
+
+// Domestic vs international split shown right after the stats band.
+export const markets: { icon: IconName; eyebrow: string; title: string; text: string; image: string; alt: string; points: string[] }[] = [
+  {
+    icon: "landmark",
+    eyebrow: "Domestic",
+    title: "Domestic Payment Gateways",
+    text: "Accept payments from customers across India with every popular payment mode and quick INR settlements to your bank.",
+    image: "/images/mobile-payments.jpg",
+    alt: "Person paying with a phone while working on a laptop",
+    points: ["UPI intent, collect & dynamic QR", "Debit & credit cards", "Net banking & wallets", "Payment links & INR payouts", "T+0 / T+1 settlements"],
+  },
+  {
+    icon: "globe",
+    eyebrow: "International",
+    title: "International Payment Gateways",
+    text: "Sell to customers worldwide and get paid in multiple currencies through our cross-border partner network.",
+    image: "/images/international.jpg",
+    alt: "Banknotes in many international currencies",
+    points: ["International cards", "Multi-currency acceptance", "Global wallets & local methods", "Cross-border settlements", "Overseas business support"],
+  },
 ];
 
 // Shown around the network visual — categories only, no partner names.
@@ -114,7 +136,7 @@ export const steps = [
 export const faqs = [
   {
     q: "Which payment gateway solutions do you offer?",
-    a: "We have partners and networks for all types of payment gateway solutions — online checkout, UPI and QR, cards, net banking, wallets, payouts and international payments. We recommend the best fit for your business category and volume.",
+    a: "We have partners and networks for all types of domestic and international payment gateway solutions — online checkout, UPI and QR, cards, net banking, wallets, payouts and international payments. We recommend the best fit for your business category and volume.",
   },
   {
     q: "How long does onboarding take?",

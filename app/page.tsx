@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, ChevronDown, Sparkles } from "lucide-react";
-import { benefits, faqs, industries, networks, site, solutions, stats, steps, trustBadges } from "@/lib/content";
+import { ArrowRight, Check, CheckCircle2, ChevronDown, Sparkles } from "lucide-react";
+import { benefits, faqs, industries, markets, networks, site, solutions, stats, steps, trustBadges } from "@/lib/content";
 import { Icon } from "@/components/Icon";
 import { FloatingTelegram, TelegramButton } from "@/components/TelegramButton";
 import { HeroVisual, NetworkOrbit } from "@/components/Visuals";
@@ -41,6 +41,7 @@ export default function Home() {
             </span>
           </a>
           <nav className="hidden items-center gap-8 text-sm font-medium lg:flex" aria-label="Main">
+            <a href="#markets" className="hover:text-white">Domestic &amp; Intl</a>
             <a href="#network" className="hover:text-white">Network</a>
             <a href="#solutions" className="hover:text-white">Solutions</a>
             <a href="#why" className="hover:text-white">Why JIPAY</a>
@@ -60,15 +61,15 @@ export default function Home() {
           <div className="container-x relative grid items-center gap-16 py-16 sm:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
             <div>
               <span className="eyebrow">
-                <Sparkles className="h-3.5 w-3.5" /> Premium payment gateway solutions
+                <Sparkles className="h-3.5 w-3.5" /> Domestic &amp; international payment gateways
               </span>
               <h1 className="mt-6 text-4xl leading-[1.05] font-extrabold sm:text-6xl lg:text-7xl">
                 Accept payments. <br className="hidden sm:block" />
                 <span className="text-gradient">Every way. Everywhere.</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-400">
-                We have <strong className="font-semibold text-white">partners and networks for all types of payment gateway solutions</strong>.
-                UPI, cards, net banking, wallets, payouts and international payments — matched to your business and live fast.
+                We have <strong className="font-semibold text-white">partners and networks for all types of domestic and international payment gateway solutions</strong>.
+                UPI, cards, net banking, wallets, payouts and multi-currency payments — matched to your business and live fast.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <TelegramButton size="lg" label="Start on Telegram" />
@@ -105,6 +106,54 @@ export default function Home() {
           </dl>
         </section>
 
+        {/* Domestic & International */}
+        <section id="markets" className="section scroll-mt-16 pb-0 sm:pb-0 lg:pb-0">
+          <div className="container-x">
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="eyebrow">Domestic &amp; international</span>
+              <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">
+                Get paid <span className="text-gradient">in India and around the world</span>
+              </h2>
+              <p className="mt-5 text-lg text-slate-400">
+                Whether your customers are next door or overseas, we have the right gateway partner for you.
+              </p>
+            </div>
+            <div className="mt-14 grid gap-6 lg:grid-cols-2">
+              {markets.map((m) => (
+                <article key={m.title} className="card group overflow-hidden">
+                  <div className="relative h-56 overflow-hidden sm:h-64">
+                    <Image
+                      src={m.image}
+                      alt={m.alt}
+                      fill
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      className="object-cover transition duration-700 group-hover:scale-105"
+                    />
+                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-night-900 via-night-900/40 to-transparent" />
+                    <span className="absolute top-5 left-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-night-950/60 px-4 py-1.5 text-xs font-semibold tracking-wider text-white uppercase backdrop-blur">
+                      <Icon name={m.icon} className="h-4 w-4 text-sky-brand" /> {m.eyebrow}
+                    </span>
+                  </div>
+                  <div className="p-7 sm:p-9">
+                    <h3 className="text-2xl font-bold sm:text-3xl">{m.title}</h3>
+                    <p className="mt-3 text-slate-400">{m.text}</p>
+                    <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                      {m.points.map((pt) => (
+                        <li key={pt} className="flex items-center gap-2.5 text-sm text-slate-200">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-brand to-pink-brand">
+                            <Check className="h-3 w-3 text-white" />
+                          </span>
+                          {pt}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Network */}
         <section id="network" className="section relative scroll-mt-16 overflow-hidden">
           <div aria-hidden className="pointer-events-none absolute top-1/3 left-1/2 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-blue-brand/10 blur-[120px]" />
@@ -112,7 +161,7 @@ export default function Home() {
             <div className="mx-auto max-w-3xl text-center">
               <span className="eyebrow">Our network</span>
               <h2 className="mt-5 text-3xl font-extrabold sm:text-5xl">
-                Partners &amp; networks for <span className="text-gradient">all types of payment gateway solutions</span>
+                Partners &amp; networks for <span className="text-gradient">all types of domestic &amp; international payment gateway solutions</span>
               </h2>
               <p className="mt-5 text-lg text-slate-400">
                 One conversation with JIPAY opens our entire partner network. We match you with the right solution for your
@@ -191,7 +240,7 @@ export default function Home() {
                 <Image src="/logo.jpg" alt="" width={48} height={48} className="rounded-xl" />
                 <div>
                   <p className="font-display font-bold text-white">One partner. Every gateway.</p>
-                  <p className="text-xs text-slate-400">Partners &amp; networks for all types</p>
+                  <p className="text-xs text-slate-400">Domestic &amp; international</p>
                 </div>
               </div>
             </div>
